@@ -1,0 +1,15 @@
+{
+  "name": "command-line-note-app",
+  "version": "1.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MD AL <m3alamin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "path-exists": "3.0.0",
+    "yargs": "12.0.1"
+  }
+}
