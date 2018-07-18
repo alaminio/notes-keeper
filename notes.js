@@ -31,7 +31,7 @@ function readNotes (fileName, callback) {
 }
 
 function writeNotes(fileName, notes, callback) {
-    fs.writeFile(fileName, JSON.stringify(notes), (err) => {
+    fs.writeFile(fileName, JSON.stringify(notes, undefined, 2), (err) => {
         if(err) {
             return callback(err);
         }
