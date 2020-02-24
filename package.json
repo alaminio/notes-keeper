@@ -1,15 +1,18 @@
 {
-  "name": "command-line-note-app",
-  "version": "1.0.1",
-  "description": "",
+  "name": "notes-app",
+  "version": "0.0.1",
+  "description": "note app",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "nm": "nodemon app"
   },
-  "author": "MD AL <m3alamin@gmail.com>",
-  "license": "MIT",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "path-exists": "3.0.0",
-    "yargs": "12.0.1"
+    "chalk": "^3.0.0",
+    "nodemon": "^2.0.2",
+    "validator": "^12.2.0",
+    "yargs": "^15.1.0"
   }
 }

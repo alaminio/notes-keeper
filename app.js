@@ -1,33 +1,70 @@
-const yargs = require('yargs');
-var notes = require('./notes');
+const yargs = require("yargs");
+const notes = require("./notes");
 
-var argv = yargs
-    .demandCommand(1, "not enough command found")
-    .alias('t', 'title')
-    .alias('d', 'desc')
-    .alias('h', 'help')
-    .alias('v', 'version')
-    .usage('Usage: node $0 <command> [options]')
-    .example("Dummy example!")
-    .describe('t', 'Put some title')
-    .describe('d', 'Put some desc')
-    .argv;
-var command = argv._[0];
+// customize yargs version
+yargs.version("0.1.0");
 
-if(command === 'add') {
-    var note = {
-        title: argv.title,
-        desc: argv.desc,
-        completed: false
+// create add command
+yargs.command({
+  command: "add",
+  describe: "add new note",
+  builder: {
+    title: {
+      describe: "title to add command",
+      demandOption: true,
+      type: "string"
+    },
+    body: {
+      describe: "note body",
+      demandOption: true,
+      type: "string"
     }
-    notes.add(note, (err, message) => {
-        if(err) {
-            console.log(err);
-        } else {
-            console.log(message);
-        }
-    });
-} else if(command === 'read') {
-    var title = argv.title;
-    console.log('Reading note');
-}
+  },
+  handler: argv => {
+    notes.addNotes(argv.title, argv.body);
+  }
+});
+
+// create remove command
+yargs.command({
+  command: "remove",
+  describe: "remving the note",
+  builder: {
+    title: {
+      describe: "title to remove",
+      demandOption: true,
+      type: "string"
+    }
+  },
+  handler: argv => {
+    notes.removeNote(argv.title);
+  }
+});
+
+// create list command
+yargs.command({
+  command: "list",
+  describe: "list all notes",
+  handler: () => {
+    notes.getNotes();
+  }
+});
+
+// create read command
+yargs.command({
+  command: "read",
+  describe: "reading the note",
+  builder: {
+    title: {
+      describe: "title to read",
+      demandOption: true,
+      type: "string"
+    }
+  },
+  handler: argv => {
+    notes.readNote(argv.title);
+  }
+});
+
+// console.log(yargs.argv);
+yargs.parse();

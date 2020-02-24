@@ -1,6 +1,6 @@
 # Helper files
 *.notes
-
+/notes.json
 # Logs
 logs
 *.log
