@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^3.0.0",
-    "nodemon": "^2.0.2",
+    "nodemon": "^2.0.22",
     "validator": "^13.7.0",
     "yargs": "^15.1.0"
   }
