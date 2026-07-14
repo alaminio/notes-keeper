@@ -1,70 +1,51 @@
 const yargs = require("yargs");
 const notes = require("./notes");
 
-// customize yargs version
-yargs.version("0.1.0");
+yargs.version("1.0.0");
 
-// create add command
 yargs.command({
   command: "add",
-  describe: "add new note",
+  describe: "Add a new note",
   builder: {
-    title: {
-      describe: "title to add command",
-      demandOption: true,
-      type: "string"
-    },
-    body: {
-      describe: "note body",
-      demandOption: true,
-      type: "string"
-    }
+    title: { describe: "Note title", demandOption: true, type: "string" },
+    body: { describe: "Note body", demandOption: true, type: "string" }
   },
-  handler: argv => {
-    notes.addNotes(argv.title, argv.body);
-  }
+  handler: argv => notes.addNote(argv.title, argv.body)
 });
 
-// create remove command
 yargs.command({
   command: "remove",
-  describe: "remving the note",
+  describe: "Remove a note",
   builder: {
-    title: {
-      describe: "title to remove",
-      demandOption: true,
-      type: "string"
-    }
+    title: { describe: "Title to remove", demandOption: true, type: "string" }
   },
-  handler: argv => {
-    notes.removeNote(argv.title);
-  }
+  handler: argv => notes.removeNote(argv.title)
 });
 
-// create list command
 yargs.command({
   command: "list",
-  describe: "list all notes",
-  handler: () => {
-    notes.getNotes();
-  }
+  describe: "List all notes",
+  handler: () => notes.listNotes()
 });
 
-// create read command
 yargs.command({
   command: "read",
-  describe: "reading the note",
+  describe: "Read a note",
   builder: {
-    title: {
-      describe: "title to read",
-      demandOption: true,
-      type: "string"
-    }
+    title: { describe: "Title to read", demandOption: true, type: "string" }
   },
-  handler: argv => {
-    notes.readNote(argv.title);
-  }
+  handler: argv => notes.readNote(argv.title)
 });
 
-// console.log(yargs.argv);
-yargs.parse();
+yargs.command({
+  command: "edit",
+  describe: "Edit an existing note",
+  builder: {
+    title: { describe: "Title of note to edit", demandOption: true, type: "string" },
+    "new-title": { describe: "New title", type: "string" },
+    "new-body": { describe: "New body", type: "string" }
+  },
+  handler: argv => notes.editNote(argv.title, argv["new-title"], argv["new-body"])
+});
+
+yargs.demandCommand(1, "Pass a command. Try --help").strict().parse();

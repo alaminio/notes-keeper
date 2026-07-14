@@ -1,18 +1,35 @@
 {
-  "name": "notes-app",
-  "version": "0.0.1",
-  "description": "note app",
+  "name": "notes-keeper",
+  "version": "1.0.0",
+  "description": "A small command-line note-taking app built with Node.js",
   "main": "app.js",
-  "scripts": {
-    "nm": "nodemon app"
+  "bin": {
+    "notes-keeper": "app.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "cli",
+    "notes",
+    "nodejs",
+    "yargs"
+  ],
+  "author": "MD AL AMIN",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alaminio/notes-keeper.git"
+  },
+  "engines": {
+    "node": ">=14"
+  },
   "dependencies": {
-    "chalk": "^3.0.0",
-    "nodemon": "^2.0.2",
-    "validator": "^13.7.0",
-    "yargs": "^15.1.0"
+    "chalk": "^4.1.2",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
